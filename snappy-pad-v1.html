@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Encoding" content="upgrade-insecure-requests">
 
     <link rel="icon" type="image/png" href="media/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
@@ -1146,7 +1147,7 @@
         <div class="top-content">
             <div class="items">
                 <div class="top-logo-outer"><a href="."><img class="top-logo" src="./media/snappy-key-logo.png"
-                                                                       alt="snappy-key-logo"></a></div>
+                                                             alt="snappy-key-logo"></a></div>
                 <div>
                     <div>
 
@@ -1190,7 +1191,7 @@
                             }
 
                             function c2() {
-                                document.getElementById("ad-photo").src = "./media/snappypad-keycapshot-white.jpg";
+                                document.getElementById("ad-photo").src = "./media/snappypad-keycapshot-white.JPG";
                                 document.getElementById("c1").style.backgroundColor = "#ffffff";
                                 document.getElementById("c2").style.backgroundColor = "#6a6a66";
                                 document.getElementById("c3").style.backgroundColor = "#ffffff";
@@ -1200,7 +1201,7 @@
                             }
 
                             function c3() {
-                                document.getElementById("ad-photo").src = "./media/snappypad-keycapshot-red.jpg";
+                                document.getElementById("ad-photo").src = "./media/snappypad-keycapshot-red.JPG";
                                 document.getElementById("c1").style.backgroundColor = "#ffffff";
                                 document.getElementById("c2").style.backgroundColor = "#ffffff";
                                 document.getElementById("c3").style.backgroundColor = "#6a6a66";
@@ -1210,7 +1211,7 @@
                             }
 
                             function c4() {
-                                document.getElementById("ad-photo").src = "./media/snappypad-sideshot.jpg";
+                                document.getElementById("ad-photo").src = "./media/snappypad-sideshot.JPG";
                                 document.getElementById("c1").style.backgroundColor = "#ffffff";
                                 document.getElementById("c2").style.backgroundColor = "#ffffff";
                                 document.getElementById("c3").style.backgroundColor = "#ffffff";
@@ -1220,7 +1221,7 @@
                             }
 
                             function c5() {
-                                document.getElementById("ad-photo").src = "./media/snappypaditems.jpg";
+                                document.getElementById("ad-photo").src = "./media/snappypaditems.JPG";
                                 document.getElementById("c1").style.backgroundColor = "#ffffff";
                                 document.getElementById("c2").style.backgroundColor = "#ffffff";
                                 document.getElementById("c3").style.backgroundColor = "#ffffff";
@@ -1388,6 +1389,8 @@
                     <option id="Zambia" value="other">Zambia</option>
                     <option id="Zimbabwe" value="other">Zimbabwe</option>
                     <option id="Åland Islands" value="eur1">Åland Islands</option>
+                    <option hidden="hidden" selected>Select Country</option>
+
                 </select>
             </div>
             <div class="switch-type">
@@ -1460,7 +1463,8 @@
     <div class="footer-container">
         <div class="footer-container-top">
             <div class="footer-line"></div>
-            <div class="bottom-logo-outer"><a href="snappy-pad-v1"><img class="bottom-logo" src="./media/snappy-key-logo.png"
+            <div class="bottom-logo-outer"><a href="snappy-pad-v1"><img class="bottom-logo"
+                                                                        src="./media/snappy-key-logo.png"
                                                                         alt="snappy-key-logo"></a></div>
             <div class="snappykey-footer-text-outside"><h2 class="snappykey-footer-text">Snappy Key </h2></div>
             <div class="social-medias">
@@ -1500,54 +1504,6 @@
     const eu2 = ["BG", "GR", "HR", "LT", "LV", "RO"] //22.99eur
     const zone4 = ["US", "CA"]
     const japan = "JP"
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            if (response.status !== 'success') {
-                console.log('query failed: ' + response.message);
-                return
-            }
-            var x = document.getElementById("dropdown");
-            var option = document.createElement("option");
-            option.text = response.country;
-            option.selected = true;
-            option.hidden = true;
-            x.add(option, x[1]);
-            if (eu1.toString().match(response.countryCode) && response.status == "success") {
-                parseValue("eur1");
-                option.value = "eur1";
-            } else if (eu2.toString().match(response.countryCode) && response.status == "success") {
-                option.value = "eur2";
-                parseValue("eur2");
-            } else if (zone4.toString().match(response.countryCode) && response.status == "success") {
-                option.value = "zoner4";
-                parseValue("zoner4");
-            } else if (japan.toString().match(response.countryCode) && response.status == "success") {
-                option.value = "japan";
-                parseValue("japan");
-            } else if (fin.toString().match(response.countryCode) && response.status == "success") {
-                option.value = "fins";
-                parseValue("fins");
-            } else if (response.status == "success" && !eu1.toString().match(response.countryCode) && !eu2.toString().match(response.countryCode)
-                && !zone4.toString().match(response.countryCode) && !japan.toString().match(response.countryCode) && !fin.toString().match(response.countryCode)) {
-                option.value = "other";
-                parseValue("other");
-            }
-                        console.log(zone4.toString().match(response.countryCode));
-
-
-        } else {
-            var x = document.getElementById("dropdown");
-            var option = document.createElement("option");
-            option.text = "Select Country";
-            option.selected = true;
-            option.hidden = true;
-            x.add(option, x[2]);
-        }
-    };
-    xhr.open('GET', endpoint, true);
-    xhr.send();
 
 
     function parseValue(area) {
@@ -1647,10 +1603,9 @@
         parseValue(document.getElementById("dropdown").value);
         return switchTypeLinear;
     }
-    console.log(navigator.geolocation.getCurrentPosition());
-
-
+    
 </script>
+
 
 </body>
 </html>
